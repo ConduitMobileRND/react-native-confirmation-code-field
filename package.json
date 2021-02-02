@@ -1,0 +1,61 @@
+{
+  "_args": [
+    [
+      "react-native-confirmation-code-field@3.9.0",
+      "/Users/maksymlebedev/Projects/phoenix"
+    ]
+  ],
+  "_from": "react-native-confirmation-code-field@3.9.0",
+  "_id": "react-native-confirmation-code-field@3.9.0",
+  "_inBundle": false,
+  "_integrity": "sha512-RrDLcyjuG6oTWlyUXG5Gv0/xi2kJmkeqB9cZ9RjASZ6odVdFnQIkJc8ipzJwwRmykFZIp4gozTjpun/7IUvOjg==",
+  "_location": "/react-native-confirmation-code-field",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "react-native-confirmation-code-field@3.9.0",
+    "name": "react-native-confirmation-code-field",
+    "escapedName": "react-native-confirmation-code-field",
+    "rawSpec": "3.9.0",
+    "saveSpec": null,
+    "fetchSpec": "3.9.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-confirmation-code-field/-/react-native-confirmation-code-field-3.9.0.tgz",
+  "_spec": "3.9.0",
+  "_where": "/Users/maksymlebedev/Projects/phoenix",
+  "bugs": {
+    "url": "https://github.com/retyui/react-native-confirmation-code-input/issues"
+  },
+  "description": "A react-native component to input confirmation code for both Android and IOS",
+  "homepage": "https://github.com/retyui/react-native-confirmation-code-input#readme",
+  "keywords": [
+    "react",
+    "react-component",
+    "react-native",
+    "react-native-component",
+    "android",
+    "ios",
+    "code-input",
+    "confirmation-code",
+    "pin-code",
+    "confirmation-code-input",
+    "pin-code-input"
+  ],
+  "license": "MIT",
+  "main": "src/components/ConfirmationCodeInput/index.js",
+  "name": "react-native-confirmation-code-field",
+  "peerDependencies": {
+    "prop-types": ">= 15.0.0",
+    "react": ">= 16.4.0",
+    "react-native": ">= 0.57.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/retyui/react-native-confirmation-code-input.git"
+  },
+  "version": "3.9.0"
+}
