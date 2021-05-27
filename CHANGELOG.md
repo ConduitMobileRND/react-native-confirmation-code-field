@@ -2,6 +2,21 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.2.0
+
+- Add more controls on mask symbol component, inspired by [91](https://github.com/retyui/react-native-confirmation-code-field/pull/91)
+- Fix android cursor alignment bug [#94](https://github.com/retyui/react-native-confirmation-code-field/pull/94). Thanks [@necipallef](https://github.com/necipallef)
+
+## 4.1.0
+
+- Fix problem with inherit method, rename `onTextChange => onChangeText` [#81](https://github.com/retyui/react-native-confirmation-code-field/issues/81)
+- Updated type of prop `inputProps` (Flow.js & TS)
+- [Release diff on npmfs.com](https://npmfs.com/compare/react-native-confirmation-code-field/4.0.0/4.1.0/)
+
+## 4.0.0
+
+- Fix problem with focus on Inputs [#78](https://github.com/retyui/react-native-confirmation-code-field/issues/78)
+
 ## 3.7.1
 
 - Fix problem when cursor inherit `<Cell/>` styles [#72](https://github.com/retyui/react-native-confirmation-code-field/pull/72)

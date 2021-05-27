@@ -1,8 +1,9 @@
 // @flow
-import { View, TextInput } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 
 import type { ElementConfig, ComponentType } from 'react';
 
+export type TextProp = ElementConfig<typeof Text>;
 export type TextInputProp = ElementConfig<typeof TextInput>;
 export type ViewProps = ElementConfig<typeof View>;
 export type KeyboardType = $PropertyType<TextInputProp, 'keyboardType'>;
@@ -39,9 +40,20 @@ export type Props = $ReadOnly<{|
   keyboardType: KeyboardType,
   maskSymbol: string,
 
+  maskSymbolProps?: {
+    ...$Exact<$Diff<TextProp, { children: any }>>,
+    delay?: number,
+  },
   cellProps: null | TextInputProp | CellPropsFn,
   containerProps: ViewProps,
-  inputProps: TextInputProp,
+  inputProps: $Diff<
+    TextInputProp,
+    {
+      autoFocus: any,
+      keyboardType: any,
+      value: any,
+    },
+  >,
   testID?: any,
 |}>;
 

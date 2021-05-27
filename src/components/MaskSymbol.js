@@ -1,8 +1,11 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, type ElementConfig } from 'react';
 import { Text } from 'react-native';
 
+type TextProp = ElementConfig<typeof Text>;
+
 type Props = {|
+  ...$Exact<$Diff<TextProp, { children: any }>>,
   delay: number,
   mask: string,
   symbol: string,
@@ -40,10 +43,11 @@ class MaskSymbol extends Component<Props, State> {
   }
 
   render() {
-    const { mask, symbol } = this.props;
+    // eslint-disable-next-line no-unused-vars
+    const { isLast, delay, mask, symbol, ...props } = this.props;
     const { showSymbol } = this.state;
 
-    return <Text>{showSymbol ? symbol : mask}</Text>;
+    return <Text {...props}>{showSymbol ? symbol : mask}</Text>;
   }
 }
 

@@ -1,17 +1,17 @@
 // @flow
-import React, { PureComponent, createRef } from 'react';
-import { View, TextInput as TextInputNative, Platform } from 'react-native';
+import React, { createRef, PureComponent } from 'react';
+import { Platform, TextInput, View } from 'react-native';
 
 import { concatStyles } from '../../styles';
 
 import Cursor from '../Cursor';
 import MaskSymbol from '../MaskSymbol';
 import Cell from '../Cell';
-import TextInputCustom from '../TextInputCustom';
+// import TextInputCustom from '../TextInputCustom';
 
 import { getCellStyle, getContainerStyle, styles } from './styles';
 
-import type { Props, State } from './types';
+import type { Props, State, TextInputProp } from './types';
 import type {
   LayoutEvent,
   PressEvent,
@@ -105,16 +105,17 @@ class ConfirmationCodeInput extends PureComponent<Props, State> {
   };
 
   renderSymbol(symbol: string, index: number) {
-    const { maskSymbol } = this.props;
+    const { maskSymbol, maskSymbolProps } = this.props;
     const lastIndex = this.getLastIndex();
 
     if (maskSymbol && symbol) {
       return (
         <MaskSymbol
-          isLast={index === lastIndex}
           delay={500}
-          mask={maskSymbol}
+          {...maskSymbolProps}
           symbol={symbol}
+          mask={maskSymbol}
+          isLast={index === lastIndex}
         />
       );
     }
@@ -135,7 +136,10 @@ class ConfirmationCodeInput extends PureComponent<Props, State> {
     return this.getCodeSymbols().map(this.renderCode);
   }
 
-  inheritTextInputMethod(methodName: string, handler: Function) {
+  inheritTextInputMethod<MethodName: string>(
+    methodName: MethodName,
+    handler: $ElementType<TextInputProp, MethodName>,
+  ) {
     return (e: mixed) => {
       handler(e);
 
@@ -147,8 +151,8 @@ class ConfirmationCodeInput extends PureComponent<Props, State> {
     };
   }
 
-  handlerOnTextChange = this.inheritTextInputMethod(
-    'onTextChange',
+  handlerOnTextChange = this.inheritTextInputMethod<'onChangeText'>(
+    'onChangeText',
     (text: string) => {
       const codeValue = this.truncateString(text);
       const { codeLength, onFulfill, blurOnSubmit } = this.props;
@@ -252,11 +256,11 @@ class ConfirmationCodeInput extends PureComponent<Props, State> {
     this.clearCodeByCoords(locationX, locationY);
   };
 
-  handlerOnFocus = this.inheritTextInputMethod('onFocus', () =>
+  handlerOnFocus = this.inheritTextInputMethod<'onFocus'>('onFocus', () =>
     this.setState({ isFocused: true }),
   );
 
-  handlerOnBlur = this.inheritTextInputMethod('onBlur', () =>
+  handlerOnBlur = this.inheritTextInputMethod<'onBlur'>('onBlur', () =>
     this.setState({ isFocused: false }),
   );
 
@@ -269,7 +273,7 @@ class ConfirmationCodeInput extends PureComponent<Props, State> {
 
     return (
       // $FlowFixMe - onClick strange prop
-      <TextInputCustom
+      <TextInput
         ref={this._input}
         maxLength={codeLength}
         {...inputProps}
@@ -277,9 +281,9 @@ class ConfirmationCodeInput extends PureComponent<Props, State> {
         autoFocus={autoFocus}
         keyboardType={keyboardType}
         onBlur={this.handlerOnBlur}
+        onChangeText={this.handlerOnTextChange}
         onFocus={this.handlerOnFocus}
         style={concatStyles(styles.maskInput, inputProps.style)}
-        onChangeText={this.handlerOnTextChange}
         value={this.state.codeValue}
       />
     );
@@ -329,7 +333,7 @@ if (process.env.NODE_ENV !== 'production') {
       'border-b',
       'clear',
     ]),
-    keyboardType: TextInputNative.propTypes.keyboardType,
+    keyboardType: TextInput.propTypes.keyboardType,
     maskSymbol: PropTypes.string,
     blurOnSubmit: PropTypes.bool,
   };

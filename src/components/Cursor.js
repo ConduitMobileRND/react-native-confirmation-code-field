@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Platform } from 'react-native';
 
 export const CURSOR_BLINKING_ANIMATION_SPEED = 500;
 export const CURSOR_SYMBOL = '|';
@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontStyle: 'normal',
     textDecorationLine: 'none',
-    textTransform: 'none',
+    // Fix for https://github.com/retyui/react-native-confirmation-code-field/issues/93
+    ...(Platform.OS !== 'android' ? { textTransform: 'none' } : {}),
   },
 });
 
